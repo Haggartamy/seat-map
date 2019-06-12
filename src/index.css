@@ -1,13 +1,68 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  height: 100vh;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.zoneSelector {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #f7f7f7;
+  padding: 20px;
+  }
+
+  .zoneSelector li {
+  list-style: none;
+  padding: 10px 20px;
+  margin-right: 20px;
+  float: left;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  text-transform: uppercase;
 }
+
+p {
+  font-size: 1.5em;
+  color: #fff;
+  clear: both;
+  padding: 20px;
+  margin:0 0 10px;
+  position: relative;
+}
+
+.zoneOne {
+  background: #d0d0ce;
+  color:#000;
+}
+
+.zoneTwo {
+  background: #0084d4;
+  color: #fff;
+}
+
+.zoneThree {
+  background: #ef426f;
+  color: #fff;
+}
+
+.zoneFour {
+  background: #ffdd46;
+  color: #fff;
+}
+
+.zoneFive {
+  background: #26d07c;
+  color: #fff;
+}
+
+.zoneSix {
+  background: #000;
+  color: #fff;
+  }
