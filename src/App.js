@@ -6,7 +6,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        zoneClicked: 1
     }
   }
 
@@ -14,7 +13,7 @@ class App extends Component {
     return (
       <div>
         <ZoneSelector zoneClicked={this.state.zoneClicked} onClick={this.handleZoneClick} />
-        <Map zoneClicked={this.state.zoneClicked} />
+        <Map />
       </div>
     )
   }

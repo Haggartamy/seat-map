@@ -16,10 +16,11 @@ function Zones(props) {
 }
 
 class ZoneSelector extends Component {
-    constructor(props) {
+    constructor(props, zone) {
         super(props)
         this.state = {
-            zones: zoneSelect
+            zones: zoneSelect,
+            zoneClicked: zone.zoneChoice
         }
         this.handleZoneClick = this.handleZoneClick.bind(this)
     }

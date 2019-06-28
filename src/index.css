@@ -1,21 +1,35 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
-  height: 100vh;
-  padding: 0;
   margin: 0;
+  padding-bottom: 40px;
+}
+
+.printBTN {
+  text-decoration: none;
+  color: #000;
+  padding: 10px 20px;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+#root div div:nth-child(2) {
+  max-width: 1635px;
+  padding: 40px;
+  margin: 0 auto;
 }
 
 .row {
   clear: both; 
-  margin: 0 auto;
+  margin: 0 auto 5px 0;
   text-align: center;
-  min-width: 1585px;
+  width: 1635px;
+  position: relative;
 }
 
 ul {
   margin: 0;
-  padding: 20px;
+  padding: 0;
 }
 
 li {
@@ -23,13 +37,20 @@ li {
 }
 
 .rowName{
-  display: inline;
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: -20px;
+}
+
+.rowName:nth-child(3) {
+  right: -20px;
+  left: auto;
 }
 
 .row ul {
-  margin: 0 10px;
-  padding: 0;
-  display: inline;
+  position: relative;
+  width: 100%;
 }
 
 .zoneSelector {
@@ -39,9 +60,10 @@ li {
   left: 0;
   background: #f7f7f7;
   z-index: 1;
+  padding: 20px;
 }
 
-.row li, .zoneSelector li {
+.seat, .zoneSelector li {
   padding: 5px;
   margin: 0 1px 10px 0;
   position: relative;
@@ -55,8 +77,8 @@ li {
   user-select: none;
   border-radius: 100%;
   display: inline-block;
-
 }
+
 
 .zoneSelector li {
   font-size: 1em;
@@ -98,30 +120,40 @@ li {
   color: #fff;
 }
 
-.D span:nth-child(1) {
-  padding-left: 219px;
+.Z {
+  margin-bottom: 60px;
 }
 
-.J span:nth-child(1) {
-  padding-left: 258px;
+.D ul :nth-child(1) {
+  margin-left: 230px;
 }
 
-.C .n38, .I .n43 {
-  margin-right: 75px;
+.J ul :nth-child(1) {
+  margin-left: 280px;
 }
 
-.X .n28, .X .n29, .X .n42, .X .n43, .Y .n9, .Y .n10, .Y .n11, .Y .n12, .Y .n13, .Y .n14, .Y .n30, .Y .n301, .Y .n32, .Y .n33, .Y .n34, .Y .n35, .Y .n36, .Y .n37, .Y .n38, .Z .n37, .Z .n1, .Z .n2, .Z .n3, .Z .n4, .Z .n5, .Z .n6, .Z .n7, .Z .n8, .Z .n9, .Z .n36, .Z .n35, .Z .n34, .Z .n33, .Z .n32, .Z .n31, .Z .n30, .Z .n29, .Z .n28, .Z .n27 {
-  display: none;
+.C38, .I43 {
+  margin-right: 100px;
 }
 
-.X .n30, .X .n44, .Y .n45, .Y .n15  {
-  margin-right: 75px;
+.X30, .X44, .Y46 {
+  margin-right: 50px;
 }
 
-.Y .n39, .Z .n38 {
-  margin-right: 385px;
+.Y15 {
+  margin-right: 120px;
 }
 
-.Z .rowName:nth-child(1) {
-  margin-left: 162px;
+.Y39, .Z38 {
+  margin-right: 375px;
+}
+
+.Z ul :nth-child(1) {
+  margin-left: 115px;
+}
+
+/* Not/Print */
+
+.notPrint .seat {
+  
 }
