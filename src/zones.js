@@ -1,43 +1,44 @@
 import React, {Component} from 'react';
 
 const zoneSelect = [
-    { id: 1, zoneChoice: 1, style: "zoneOne" },
-    { id: 2, zoneChoice: 2, style: "zoneTwo" },
-    { id: 3, zoneChoice: 3, style: "zoneThree" },
-    { id: 4, zoneChoice: 4, style: "zoneFour" },
-    { id: 5, zoneChoice: 5, style: "zoneFive" },
-    { id: 6, zoneChoice: 6, style: "zoneSix" }
+    { id: 1, zoneChoice: 1, name: "Zone 1", style: "zoneOne" },
+    { id: 2, zoneChoice: 2, name: "Zone 2", style: "zoneTwo" },
+    { id: 3, zoneChoice: 3, name: "Zone 3", style: "zoneThree" },
+    { id: 4, zoneChoice: 4, name: "Lottery", style: "zoneFour" },
+    { id: 5, zoneChoice: 5, name: "Premium", style: "zoneFive" },
+    { id: 6, zoneChoice: 6, name: "Not Sold", style: "zoneSix" }
 ]
 
 function Zones(props) {  
     return (
-        <li className={props.zone.style} onClick={props.onClick}>{props.zone.zoneChoice}</li>
+        <li className={props.zone.style}><span onClick={props.onClick}>{props.zone.zoneChoice}</span><input defaultValue={props.zone.name} type="text" onChange={props.onChange}></input></li>
     )
 }
 
 class ZoneSelector extends Component {
-    constructor(props, zone) {
+    constructor(props) {
         super(props)
         this.state = {
-            zones: zoneSelect,
-            zoneClicked: zone.zoneChoice
+            zones: zoneSelect
         }
         this.handleZoneClick = this.handleZoneClick.bind(this)
     }
 
-    handleZoneClick(zone) {
-        this.setState({ zoneClicked : zone.zoneChoice });
+    handleZoneClick = (zone) => {
+        this.props.getUpdatedZone(zone.zoneChoice)
     }
-        
+
     render() {
         const zoneList = this.state.zones.map(zone => 
-            <Zones key={zone.id} zone={zone} onClick={() => this.handleZoneClick(zone)} />
+            <Zones key={zone.id} zone={zone} 
+                onClick={() => this.handleZoneClick(zone)}
+                onChange={this.handleChange}
+             />
         )
         return (
             <div>
                 <ul className="zoneSelector">
                     {zoneList}
-                    {this.state.zoneClicked}
                 </ul>
             </div>
         )
