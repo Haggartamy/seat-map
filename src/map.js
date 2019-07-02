@@ -118,6 +118,18 @@ class Map extends Component {
             }
         )
 
+        document.querySelectorAll('.C38, .C41, .C42, .I50, .I43, .I46, .I47, .Y58, .Y57, .Y54, .Y53, .Y49, .Y50, .Y46, .Y7, .Y6, .Y3, .Y2').forEach(
+            function(wheelchair){
+                wheelchair.classList.add('wheelchair');
+            }
+        )
+
+        document.querySelectorAll('.Y1, .Y4, .Y5, .Y8, .Y47, .Y48, .Y51, .Y52, .Y55, .Y56, .Y59, .I44, .I45, .I48, .I49, .C39, .C40, .C43').forEach(
+            function(companion){
+                companion.classList.add('companion');
+            }
+        )
+
         document.querySelectorAll('.seat').forEach(
             function(seat){
                 let distance
