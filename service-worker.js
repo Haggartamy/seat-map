@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Haggartamy/seat-map.git/precache-manifest.a0cf59b2e65bdeb2ecb855279ab0bd3c.js"
+  "/Haggartamy/seat-map.git/precache-manifest.7d897fba614b959bcc9c6b1461137016.js"
 );
 
 self.addEventListener('message', (event) => {
