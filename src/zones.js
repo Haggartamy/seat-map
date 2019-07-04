@@ -11,7 +11,11 @@ const zoneSelect = [
 
 function Zones(props) {  
     return (
-        <li className={props.zone.style}><span onClick={props.onClick}>{props.zone.zoneChoice}</span><input defaultValue={props.zone.name} type="text" onChange={props.onChange}></input></li>
+        <li className={props.zone.style}>
+            <span onClick={props.onClick} className="zone">{props.zone.zoneChoice}</span>
+            <input defaultValue={props.zone.name} type="text" onChange={props.onChange}></input>
+            <span className="totalSeats"></span>
+        </li>
     )
 }
 
@@ -22,10 +26,16 @@ class ZoneSelector extends Component {
             zones: zoneSelect
         }
         this.handleZoneClick = this.handleZoneClick.bind(this)
+        this.printClass = this.printClass.bind(this)
     }
 
-    handleZoneClick = (zone) => {
+    handleZoneClick(zone) {
         this.props.getUpdatedZone(zone.zoneChoice)
+        document.getElementsByClassName('totalSeats').innerHTML = 'Hi'
+    }
+
+    printClass() {
+            document.body.classList.toggle('print')
     }
 
     render() {
@@ -33,13 +43,14 @@ class ZoneSelector extends Component {
             <Zones key={zone.id} zone={zone} 
                 onClick={() => this.handleZoneClick(zone)}
                 onChange={this.handleChange}
-             />
+            />
         )
         return (
             <div>
                 <ul className="zoneSelector">
                     {zoneList}
                 </ul>
+                <p className="printBTN" onClick={this.printClass}>Print</p>
             </div>
         )
     } 

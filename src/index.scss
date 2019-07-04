@@ -13,7 +13,7 @@ body {
   font-weight: 400;
   position: relative;
   margin: 100px 0 0 0;
-  padding: 70px 0;
+  padding: 70px 0 200px;
   min-width: 1715px;
 
   &:after {
@@ -23,7 +23,7 @@ body {
     z-index: -3;
     position: absolute;
     top: 0;
-    bottom: 245px;
+    bottom: 375px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -31,12 +31,36 @@ body {
   }
 }
 
+.title {
+  position: absolute;
+  top: -250px;
+  left: 50px;
+  font-size: 4em;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: none;
+  font-weight: 600;
+  & span {
+    letter-spacing: 1px;
+    display: block;
+    font-size: .3em;
+    font-weight: 400;
+  }
+
+}
+
 .printBTN {
   text-decoration: none;
-  color: #000;
+  color: $black;
   padding: 10px 20px;
-  background-color: #eee;
+  background-color: $gray;
   border-radius: 3px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+  cursor: pointer;
+  user-select: none;
 }
 
 #root div div:nth-child(2) {
@@ -91,25 +115,36 @@ li {
   padding: 20px;
 }
 
-input {
+.zoneSelector li {
+  height: 50px;
   float: left;
+  width: 230px;
+}
+
+input {
   display: block;
   background-color: transparent;
   border: none;
-  padding: 10px 0;
-  margin: 0 10px;
-  width: auto;
+  padding: 0 0 5px 0;
+  margin: 0;
   font-size: 1em;
+  color: inherit;
 }
 
-.seat, .zoneSelector span {
+.totalSeats {
+  margin: 0 10px;
+  display: block;
+
+}
+
+.seat, .zoneSelector .zone {
   padding: 5px 0;
   margin: 0 1px 10px 0;
   position: relative;
   background: #d0d0ce;
   font-size: .7em;
   line-height: 1.1em;
-  color:#000;
+  color :#000;
   width: 22px;
   height: 12px;
   text-align: center;
@@ -120,68 +155,113 @@ input {
   text-align: center;
 }
 
-.zoneSelector span {
+.zoneSelector .zone {
   font-size: 1em;
   border-radius: 3px;
-  padding: 10px;
-  width: 15px;
-  height: 15px;
-  margin: 0 0 0 10px;
+  padding: 12px 10px 10px;
+  width: auto;
+  min-width: 22px;
+  height: 20px;
+  margin: 0 10px 0;
   float: left;
 }
 
-.zoneSelector span, .zoneOne {
+.zoneSelector .zone, .seat.zoneOne {
   background: $gray;
   color: $black;
 }
 
-.zoneTwo span, .zoneTwo {
+.zoneTwo .zone, .seat.zoneTwo {
   background: $pink;
   color: $white;
 }
 
-.zoneThree span, .zoneThree {
+.zoneThree .zone, .seat.zoneThree {
   background: $blue;
   color: $white;
 }
 
-.zoneFour span, .zoneFour {
+.zoneFour .zone, .seat.zoneFour {
   background: $yellow;
 }
 
-.zoneFive span, .zoneFive {
+.zoneFive .zone, .seat.zoneFive {
   background: $green;
 
 }
 
-.zoneSix span, .zoneSix {
+.zoneSix .zone, .seat.zoneSix {
   background: $black;
   color: $white;
 }
 
 /* row positioning */
+.AA ul :nth-child(1) {
+  margin-left: 70px;
+}
+
+.BB ul :nth-child(1) {
+  margin-left: -20px;
+}
+
 .CC {
   margin-bottom: 30px;
 }
 
+.C ul :nth-child(1) {
+  margin-left: 80px;
+}
+
 .C38, .I43 {
-  margin-right: 100px;
+  margin-right: 60px;
 }
 
 .D ul :nth-child(1) {
-  margin-left: 230px;
+  margin-left: 298px;
 }
 
 .E ul :nth-child(1) {
-  margin-left: -100px;
+  margin-left: -47px;
+}
+
+.F ul :nth-child(1) {
+  margin-left: 22px;
+}
+
+.H ul :nth-child(1) {
+  margin-left: -92px;
+}
+
+.I ul :nth-child(1) {
+  margin-left: 10px;
 }
 
 .J ul :nth-child(1) {
-  margin-left: 280px;
+  margin-left: 253px;
+}
+
+.P ul :nth-child(1) {
+  margin-left: -22px;
 }
 
 .Q {
   margin-bottom: 20px;
+}
+
+.R ul :nth-child(1) {
+  margin-left: -22px;
+}
+
+.U ul :nth-child(1) {
+  margin-left: 22px;
+}
+
+.V ul :nth-child(1) {
+  margin-left: -24px;
+}
+
+.W ul :nth-child(1) {
+  margin-left: -22px;
 }
 
 .X28, .X41 {
@@ -210,6 +290,10 @@ input {
 
 .Z ul :nth-child(1) {
   margin-left: 230px;
+}
+
+.TC ul :nth-child(1) {
+  margin-left: -45px;
 }
 
 /* Stage */
@@ -285,10 +369,10 @@ input {
 .C:before, .I:before, .Y:before, .Y:after {
   content: "Platform C (43-38)";
   position: absolute;
-  left: 266px;
-  top: -75px;
+  left: 326px;
+  top: -60px;
   width: 146px;
-  transform: rotate(0.04turn);
+  transform: rotate(0.035turn);
   padding: 40px 0 5px 0;
   background-color: #f7f7f7;
   z-index: -2;
@@ -296,8 +380,8 @@ input {
 
 .I:before {
   content: "Platform I (50-43)";
-  left: 181px;
-  top: -94px;
+  left: 207px;
+  top: -86px;
   width: 198px;
   transform: rotate(0.045turn);
 }
@@ -381,16 +465,19 @@ p.ada:before {
 }
 
 .Z:after {
-  top: -70px;
+  top: -46px;
   background-image: url(images/line.svg);
 } 
 
+/* Print */
+body.print {
+  margin-top: 250px;
+}
 
 .print {
-/* Print */
 
-  & body {
-    margin-top: 200px;
+  & .title {
+    display: block;
   }
 
   /* hide/show numbers on print */
@@ -504,5 +591,52 @@ p.ada:before {
     content: "A";
   }
 
-  /*end print*/
+  /*Zone Key*/
+  & .zoneSelector {
+    position: absolute;
+    bottom: auto;
+    top: 1750px;
+    right: 0px;
+    left:  auto;
+    width: 300px;
+    background-color: transparent;
+  }
+
+  & .zoneSelector {
+    & li {
+      height:35px;
+    }
+    & .zone {
+    border-radius: 100%;
+    color: $gray;
+    width:  22px;
+    height: 22px;
+    padding: 0;
+    }
+    & .zoneTwo .zone {
+      color: $pink;
+    }
+    & .zoneThree .zone {
+      color: $blue;
+    }
+    & .zoneFour .zone {
+      color: $yellow;
+    }
+    & .zoneFive .zone {
+      color: $green;
+    }
+    & .zoneSix .zone {
+      color: $black;
+    }
+  }
+
+  & input {
+    padding-top: 2px;
+  }
+
+  & .totalSeats {
+    display: none;
+  }
+
 }
+  /*end print*/

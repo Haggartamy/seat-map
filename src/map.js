@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import zoneCounter from './zoneCounter';
+import zoneChange from './zoneChange';
 
 const rows = [
     { id: 'AA', label: 'AA', numberOfSeats: 31 },
@@ -49,8 +51,9 @@ function Rows(props) {
     const listSeats = seats.map((seat) => 
         <li 
             style={{top: 0 + 'px'}} 
-            className={'s' + seat + ' seat ' + props.row.id + seat} 
+            className={'zoneOne s' + seat + ' seat ' + props.row.id + seat} 
             key={props.row.id + seat} 
+            onClick={props.onClick}
             onMouseOver={props.onMouseOver}
         >
             {seat}
@@ -63,27 +66,8 @@ function Rows(props) {
         seats.forEach(
             function(seat){
                 const classList = seat.classList
-                if(zoneChoice === 1) {
-                    classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneFive', 'zoneSix')
-                } else if(zoneChoice === 2) {
-                    classList.add('zoneTwo')
-                    classList.remove('zoneThree', 'zoneFour', 'zoneFive', 'zoneSix')
-                } else if(zoneChoice === 3) {
-                    classList.add('zoneThree')
-                    classList.remove('zoneTwo', 'zoneFour', 'zoneFive', 'zoneSix')
-                } 
-                else if(zoneChoice === 4) {
-                    classList.add('zoneFour')
-                    classList.remove('zoneTwo', 'zoneThree', 'zoneFive', 'zoneSix')
-                }
-                else if(zoneChoice === 5) {
-                    classList.add('zoneFive')
-                    classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneSix')
-                }
-                else if(zoneChoice === 6) {
-                    classList.add('zoneSix')
-                    classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneFive')
-                }
+                zoneChange(classList, zoneChoice)  
+                zoneCounter()  
             }
         )
     }
@@ -108,6 +92,7 @@ class Map extends Component {
             zoneChoice: this.props.zoneChoice
         }
         this.handleSeatChange = this.handleSeatChange.bind(this)
+        this.handleSeatChangeClick = this.handleSeatChangeClick.bind(this)
     }
 
     componentDidMount() {
@@ -117,6 +102,8 @@ class Map extends Component {
                 removeSeat.parentNode.removeChild(removeSeat);
             }
         )
+
+        zoneCounter()
 
         document.querySelectorAll('.C38, .C41, .C42, .I50, .I43, .I46, .I47, .Y58, .Y57, .Y54, .Y53, .Y49, .Y50, .Y46, .Y7, .Y6, .Y3, .Y2').forEach(
             function(wheelchair){
@@ -130,26 +117,27 @@ class Map extends Component {
             }
         )
 
-        document.querySelectorAll('.seat').forEach(
-            function(seat){
-                let distance
-                const left = (seat.offsetLeft + 11)
-                const right = (1635 - left)
-                if( left >= right ) {
-                    distance = (Math.pow((.0045 * left), 5))/100;
-                } else {
-                    distance = (Math.pow((.0045 * right), 5))/100;
-                }        
-                const top = distance
-                const printStyleTop = '-' + top + 'px'
-                const styleTop = seat.style.top
-                if(styleTop !== 0 + 'px' ) {
-                    seat.style.top = 0 + 'px' 
-                } else {
-                    seat.style.top = printStyleTop
-                }
+        const seat = document.querySelectorAll('.seat')
+        let i
+        for (i = 0; i < seat.length; i++) { 
+            let distance
+            const left = (seat[i].offsetLeft + 11)
+            const right = (1635 - left)
+            if( left >= right ) {
+                distance = (Math.pow((.0045 * left), 5))/100;
+            } else {
+                distance = (Math.pow((.0045 * right), 5))/100;
+            }        
+            const top = distance
+            const printStyleTop = '-' + top + 'px'
+            const styleTop = seat[i].style.top
+            if(styleTop !== 0 + 'px' ) {
+                seat[i].style.top = 0 + 'px' 
+            } else {
+                seat[i].style.top = printStyleTop
             }
-        )
+        }
+
         document.querySelectorAll('.rowName').forEach(
             function(rowName){
                 const ul = rowName.parentElement.children[1]
@@ -177,39 +165,28 @@ class Map extends Component {
         )
     }
 
+    handleSeatChangeClick(seatClick) { 
+        const classList = seatClick.target.classList
+        const zoneChoice = this.props.zoneChoice
+
+        zoneChange(classList, zoneChoice)
+        zoneCounter()
+    }    
+
     handleSeatChange(seat) { 
-            const classList = seat.target.classList
-            const updateZone = this.props.zoneChoice
-            let shift = false
-            if (seat.shiftKey) {
-                shift = true
-            }
-            if(updateZone === 1 && shift === true) {
-                classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneFive', 'zoneSix')
-            } else if(updateZone === 2 && shift === true) {
-                classList.add('zoneTwo')
-                classList.remove('zoneThree', 'zoneFour', 'zoneFive', 'zoneSix')
-            } else if(updateZone === 3 && shift === true) {
-                classList.add('zoneThree')
-                classList.remove('zoneTwo', 'zoneFour', 'zoneFive', 'zoneSix')
-            } 
-            else if(updateZone === 4 && shift === true) {
-                classList.add('zoneFour')
-                classList.remove('zoneTwo', 'zoneThree', 'zoneFive', 'zoneSix')
-            }
-            else if(updateZone === 5 && shift === true) {
-                classList.add('zoneFive')
-                classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneSix')
-            }
-            else if(updateZone === 6 && shift === true) {
-                classList.add('zoneSix')
-                classList.remove('zoneTwo', 'zoneThree', 'zoneFour', 'zoneFive')
-            }
+        const classList = seat.target.classList
+        const zoneChoice = this.props.zoneChoice
+        if (seat.shiftKey) {
+            zoneChange(classList, zoneChoice)
+            zoneCounter()  
+        }
+
     }
 
     render() {
         const rows = this.state.row.map(row => 
             <Rows key={row.id} row={row} 
+                onClick={this.handleSeatChangeClick}
                 onMouseOver={this.handleSeatChange} 
                 {...this.props}
             />
